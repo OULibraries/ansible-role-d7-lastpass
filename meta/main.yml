@@ -146,5 +146,5 @@ galaxy_info:
   #- packaging
   - system
   #- web
-dependencies:
-  - jsnshrmn.lastpass-cli 
+dependencies:[]
+  # - jsnshrmn.lastpass-cli 
