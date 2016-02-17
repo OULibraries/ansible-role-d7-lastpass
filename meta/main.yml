@@ -147,4 +147,4 @@ galaxy_info:
   - system
   #- web
 dependencies:
-  - jsnshrmn.lastpass-cli
+  - OULibraries.lastpass-cli
