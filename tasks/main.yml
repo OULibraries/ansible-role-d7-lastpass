@@ -19,23 +19,3 @@
 - name: Set MariaDB root password as fact
   set_fact:
     mariadb_root: "{{ mariadb_get_root_pw.stdout }}"
-- name: Check for libacct credentials
-  shell: >
-    lpass show 'd7\unix/libacct' | grep Username | cut -d ' ' -f 2 | xargs
-  register: libacct_get_user
-- name: Set libacct password
-  shell: >
-    lpass generate --sync=now --username=libacct 'd7\unix/libacct' --no-symbols 32
-  register: libacct_set_pw
-  when: libacct_get_user.stdout != 'libacct'
-- name: Fetch libacct password
-  shell: >
-    lpass show --sync=now 'd7\unix/libacct' | grep Password | cut -d ' ' -f 2 | xargs
-  register: libacct_get_pw
-- name: Crypt libacct password for unix
-  shell: >
-    /usr/bin/python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt('{{ libacct_get_pw.stdout  }}')"
-  register: libacct_crypt_pw
-- name: Set libacct password crypt as fact
-  set_fact:
-    libacct_pw_crypt: "{{ libacct_crypt_pw.stdout }}"
