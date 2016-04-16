@@ -1,4 +1,4 @@
-Role Name
+OULibraries.d7-lastpass
 =========
 
 Fetch d7 credentials from lastpass.
